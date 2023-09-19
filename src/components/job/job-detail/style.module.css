@@ -1,0 +1,29 @@
+.container {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #b6b6b6;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.corporate {
+  font-weight: 700;
+  font-size: 18px;
+  width: 100%;
+}
+
+.job {
+  width: 100%;
+  font-size: 14px;
+}
