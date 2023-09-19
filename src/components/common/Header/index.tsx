@@ -11,6 +11,7 @@ import {
   Show,
 } from "@chakra-ui/react";
 import { AddIcon, EmailIcon, HamburgerIcon } from "@chakra-ui/icons";
+import Link from "next/link";
 
 export default function Header(): JSX.Element {
   return (
@@ -25,7 +26,9 @@ export default function Header(): JSX.Element {
             variant="outline"
           />
           <MenuList>
-            <MenuItem icon={<AddIcon />}>Buat Lowongan</MenuItem>
+            <MenuItem as="a" href="/job/add" icon={<AddIcon />}>
+              Buat Lowongan
+            </MenuItem>
             <MenuItem icon={<EmailIcon />}>Lowongan Terkirim</MenuItem>
           </MenuList>
         </Menu>
@@ -33,7 +36,7 @@ export default function Header(): JSX.Element {
       <Show above="md">
         <ul>
           <li>
-            <a href="/buat-lowongan-pekerjaan">Buat Lowongan</a>
+            <Link href="/job/add">Buat Lowongan</Link>
           </li>
           <li>
             <a href="/lamaran-terkirim">Lowongan Terkirim</a>
