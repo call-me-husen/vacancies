@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
-import Image from "next/image";
-import styles from "@/components/common/Layout/style.module.css";
 import Header from "@/components/common/Header";
 import Head from "next/head";
+import { Flex, Text } from "@chakra-ui/react";
 
 export default function Layout({
   children,
@@ -21,10 +20,17 @@ export default function Layout({
       </Head>
       <main>
         <Header />
-        <div className={styles.container}>
-          <h1>{title}</h1>
+        <Flex direction="column" marginTop={20} gap="32px" padding={8}>
+          <Text
+            as="h1"
+            fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+            fontWeight="bold"
+            textAlign={{ base: "center", md: "start" }}
+          >
+            {title}
+          </Text>
           {children}
-        </div>
+        </Flex>
       </main>
     </>
   );
