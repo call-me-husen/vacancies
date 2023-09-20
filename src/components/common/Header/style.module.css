@@ -31,8 +31,3 @@
   padding: 8px 12px;
   text-decoration: none;
 }
-
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}

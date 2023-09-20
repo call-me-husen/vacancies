@@ -17,15 +17,7 @@ export default function HomeScreen(): JSX.Element {
     alert(id);
   };
 
-  const dispatch = useStoreDispatch();
   const { data } = useStoreState((state) => state.job);
-
-  useEffect(() => {
-    fetchJob().then((jobs) => {
-      dispatch(setData(jobs));
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Layout title="Lowongan Pekerjaan">

@@ -16,7 +16,9 @@ import Link from "next/link";
 export default function Header(): JSX.Element {
   return (
     <nav className={styles.navbar}>
-      <Image src={Logo} alt="logo" height={50} />
+      <Link href="/">
+        <Image src={Logo} alt="logo" height={50} />
+      </Link>
       <Hide above="md">
         <Menu>
           <MenuButton
@@ -29,7 +31,9 @@ export default function Header(): JSX.Element {
             <MenuItem as="a" href="/job/add" icon={<AddIcon />}>
               Buat Lowongan
             </MenuItem>
-            <MenuItem icon={<EmailIcon />}>Lowongan Terkirim</MenuItem>
+            <MenuItem icon={<EmailIcon />} as="a" href="/my-job">
+              Lowongan Terkirim
+            </MenuItem>
           </MenuList>
         </Menu>
       </Hide>
@@ -39,7 +43,7 @@ export default function Header(): JSX.Element {
             <Link href="/job/add">Buat Lowongan</Link>
           </li>
           <li>
-            <a href="/lamaran-terkirim">Lowongan Terkirim</a>
+            <Link href="/my-job">Lowongan Terkirim</Link>
           </li>
         </ul>
       </Show>

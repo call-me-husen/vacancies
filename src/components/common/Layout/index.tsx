@@ -1,7 +1,10 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Header from "@/components/common/Header";
 import Head from "next/head";
 import { Flex, Text } from "@chakra-ui/react";
+import { fetchJob } from "@/services/job";
+import { useStoreDispatch } from "@/redux/store";
+import { setData } from "@/redux/reducers/job";
 
 export default function Layout({
   children,
@@ -10,6 +13,14 @@ export default function Layout({
   children: ReactNode;
   title: string;
 }): JSX.Element {
+  const dispatch = useStoreDispatch();
+
+  useEffect(() => {
+    fetchJob().then((jobs) => {
+      dispatch(setData(jobs));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Head>
@@ -25,7 +36,7 @@ export default function Layout({
             as="h1"
             fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
             fontWeight="bold"
-            textAlign={{ base: "center", md: "start" }}
+            textAlign="center"
           >
             {title}
           </Text>

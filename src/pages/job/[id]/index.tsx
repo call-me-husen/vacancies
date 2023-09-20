@@ -1,4 +1,4 @@
-import DetailLowonganScreen from "@/screens/detail-lowongan";
+import JobDetailScreen from "@/screens/job/detail";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -10,4 +10,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-export default DetailLowonganScreen;
+export default JobDetailScreen;
