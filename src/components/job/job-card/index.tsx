@@ -11,6 +11,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { useMemo } from "react";
 import {
   MdBrokenImage,
   MdMonetizationOn,
@@ -20,13 +21,23 @@ import {
 interface IJobCardProps {
   data: IJob;
   onOpenDetail: (id: string) => void;
-  onSubmitJob: (id: string) => void;
+  onSubmitJob?: (id: string) => void;
+  onWithdraw?: (id: string) => void;
+  withdrawable?: boolean;
 }
 export default function JobCard({
   data,
   onOpenDetail,
-  onSubmitJob,
+  onSubmitJob = () => null,
+  onWithdraw = () => null,
+  withdrawable,
 }: IJobCardProps): JSX.Element {
+  const buttonText = useMemo(() => {
+    if (!data.applied) return "Kirim Lamaran";
+    if (withdrawable) return "Tarik Lamaran";
+    return "Lamaran Terkirim";
+  }, [data.applied, withdrawable]);
+
   return (
     <Card>
       <CardBody position="relative">
@@ -73,13 +84,17 @@ export default function JobCard({
             </Button>
             <Button
               size="sm"
-              colorScheme="teal"
+              colorScheme={data.applied && withdrawable ? "orange" : "teal"}
               width="100%"
               marginTop={2}
-              onClick={() => onSubmitJob(data.jobVacancyCode)}
-              isDisabled={data.applied}
+              onClick={() =>
+                data.applied && withdrawable
+                  ? onWithdraw(data.jobVacancyCode)
+                  : onSubmitJob(data.jobVacancyCode)
+              }
+              isDisabled={data.applied && !withdrawable}
             >
-              {data.applied ? "Lamaran Terkirim" : "Kirim Lamaran"}
+              {buttonText}
             </Button>
           </HStack>
         </VStack>

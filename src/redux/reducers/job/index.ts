@@ -42,10 +42,6 @@ export const job = createSlice({
       };
     },
     submitJob: (state, { payload }: PayloadAction<string>) => {
-      const selectedJobIdx = state.data.findIndex(
-        (job) => job.jobVacancyCode === payload
-      );
-
       const newData = state.data.map((job) =>
         job.jobVacancyCode === payload
           ? {
@@ -61,8 +57,24 @@ export const job = createSlice({
         data: newData,
       };
     },
+    withdrawJob: (state, { payload }: PayloadAction<string>) => {
+      const newData = state.data.map((job) =>
+        job.jobVacancyCode === payload
+          ? {
+              ...job,
+              applied: false,
+            }
+          : job
+      );
+
+      sessionStorage.setItem("temp-job", JSON.stringify(newData));
+      return {
+        ...state,
+        data: newData,
+      };
+    },
   },
 });
 
-export const { setData, setIsLoading, submitJob } = job.actions;
+export const { setData, setIsLoading, submitJob, withdrawJob } = job.actions;
 export default job.reducer;
