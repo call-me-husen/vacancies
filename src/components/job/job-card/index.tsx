@@ -79,7 +79,7 @@ export default function JobCard({
               onClick={() => onSubmitJob(data.jobVacancyCode)}
               isDisabled={data.applied}
             >
-              Kirim Lamaran
+              {data.applied ? "Lamaran Terkirim" : "Kirim Lamaran"}
             </Button>
           </HStack>
         </VStack>

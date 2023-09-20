@@ -5,16 +5,18 @@ import { useRouter } from "next/router";
 import { useStoreDispatch, useStoreState } from "@/redux/store";
 import { useEffect } from "react";
 import { fetchJob } from "@/services/job";
-import { setData } from "@/redux/reducers/job";
+import { setData, submitJob } from "@/redux/reducers/job";
 
 export default function HomeScreen(): JSX.Element {
   const { push } = useRouter();
+
+  const dispatch = useStoreDispatch();
   const onOpenDetail = (id: string) => {
     push(`/job/${id}`);
   };
 
   const onSubmitJob = (id: string) => {
-    alert(id);
+    dispatch(submitJob(id));
   };
 
   const { data } = useStoreState((state) => state.job);
