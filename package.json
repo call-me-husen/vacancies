@@ -29,6 +29,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.4",
     "uuid": "^9.0.1"
   }
 }
