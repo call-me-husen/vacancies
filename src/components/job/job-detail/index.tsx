@@ -47,11 +47,17 @@ export default function JobDetail({
                 alt={data.corporateName}
                 fallback={<Icon as={MdBrokenImage} boxSize={20} />}
               />
-              <VStack gap={0}>
-                <Text as="h2" fontWeight="bold" fontSize="md" textAlign="left">
+              <VStack gap={0} width="100%">
+                <Text
+                  as="h2"
+                  fontWeight="bold"
+                  fontSize="md"
+                  textAlign="left"
+                  width="100%"
+                >
                   {data.positionName}
                 </Text>
-                <Text as="h3" fontSize="sm" textAlign="left">
+                <Text as="h3" fontSize="sm" textAlign="left" width="100%">
                   {data.corporateName}
                 </Text>
               </VStack>
