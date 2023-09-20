@@ -13,6 +13,7 @@ import {
   Textarea,
   HStack,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import dayjs from "dayjs";
@@ -59,6 +60,7 @@ export default function JobAddScreens(): JSX.Element {
   const { data } = useStoreState((state) => state.job);
   const dispatch = useStoreDispatch();
   const { push } = useRouter();
+  const toast = useToast();
 
   const onSave = () => {
     const id = uuidv4();
@@ -73,9 +75,25 @@ export default function JobAddScreens(): JSX.Element {
 
     // since we are not saving the data, we have to store it locally
     sessionStorage.setItem("temp-job", JSON.stringify(newData));
+    toast({
+      title: "Berhasil menambahkan lowongan",
+      description: "Selamat, lowongan Anda berhasil dibuat!",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top-right",
+    });
     push("/");
   };
 
+  const isDisabled =
+    !formData.corporateName ||
+    !formData.corporateLogo ||
+    !formData.positionName ||
+    !formData?.workModel?.id ||
+    !formData.status ||
+    !formData.postedDate ||
+    !formData.descriptions;
   return (
     <Layout title="Buat Lowongan">
       <VStack gap={5} width="100%">
@@ -188,7 +206,12 @@ export default function JobAddScreens(): JSX.Element {
           >
             Cancel
           </Button>
-          <Button colorScheme="teal" width="100%" onClick={onSave}>
+          <Button
+            colorScheme="teal"
+            width="100%"
+            onClick={onSave}
+            isDisabled={isDisabled}
+          >
             Save
           </Button>
         </HStack>

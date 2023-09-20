@@ -1,4 +1,3 @@
-import Button from "@/components/common/Button";
 import currencyFormatter from "@/helper/currency-formatter";
 import relativeTime from "@/helper/relative-time";
 import { IJob } from "@/model/job/interface";
@@ -13,6 +12,7 @@ import {
   Box,
   CardHeader,
   CardFooter,
+  Button,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import {
@@ -24,9 +24,13 @@ import {
 
 interface IJobDetailProps {
   data: IJob;
+  onProcess: (id: string) => void;
 }
 
-export default function JobDetail({ data }: IJobDetailProps): JSX.Element {
+export default function JobDetail({
+  data,
+  onProcess,
+}: IJobDetailProps): JSX.Element {
   const workArrangement = data.workModel
     ? `${data.status} - ${data.workModel.text}`
     : data.status;
@@ -89,7 +93,13 @@ export default function JobDetail({ data }: IJobDetailProps): JSX.Element {
           ></Box>
         </CardBody>
         <CardFooter>
-          <Button onClick={() => null}>Kirim Lamaran</Button>
+          <Button
+            onClick={() => onProcess(data.jobVacancyCode)}
+            colorScheme={data.applied ? "orange" : "teal"}
+            width="100%"
+          >
+            {data.applied ? "Tarik Lamaran" : "Kirim Lamaran"}
+          </Button>
         </CardFooter>
       </Card>
     </VStack>
