@@ -48,10 +48,10 @@ export default function JobDetail({
                 fallback={<Icon as={MdBrokenImage} boxSize={20} />}
               />
               <VStack gap={0}>
-                <Text as="h2" fontWeight="bold" fontSize="md">
+                <Text as="h2" fontWeight="bold" fontSize="md" textAlign="left">
                   {data.positionName}
                 </Text>
-                <Text as="h3" fontSize="sm">
+                <Text as="h3" fontSize="sm" textAlign="left">
                   {data.corporateName}
                 </Text>
               </VStack>
@@ -72,7 +72,7 @@ export default function JobDetail({
               <HStack gap={2} width="100%">
                 <Icon as={MdWatchLater} fontSize="xs" />
                 <Text fontSize="xs" textTransform="capitalize">
-                  {relativeTime(data.postedDate, dayjs().format("DD/MM/YYYY"))}
+                  {relativeTime(dayjs().format("DD/MM/YYYY"), data.postedDate)}
                 </Text>
               </HStack>
             </VStack>

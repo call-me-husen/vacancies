@@ -1,8 +1,10 @@
 import dayjs from "dayjs";
+import formatter from "dayjs/plugin/customParseFormat";
 import rt from "dayjs/plugin/relativeTime";
-import id from "dayjs/locale/id";
+import "dayjs/locale/id";
 
-dayjs.locale(id);
+dayjs.locale("id");
+dayjs.extend(formatter);
 dayjs.extend(rt);
 
 export default function relativeTime(
@@ -10,8 +12,8 @@ export default function relativeTime(
   to: string,
   format: string = "DD/MM/YYYY"
 ): string {
-  const inputFrom = dayjs(from, { format });
-  const inputTo = dayjs(to, { format });
+  const inputFrom = dayjs(from, format);
+  const inputTo = dayjs(to, format);
 
   const diff = inputTo.from(inputFrom);
 
