@@ -4,7 +4,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
   NumberInput,
   NumberInputField,
   Select,
@@ -15,7 +14,7 @@ import {
   HStack,
   Button,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dayjs from "dayjs";
 import { v4 as uuidv4 } from "uuid";
 import { useStoreDispatch, useStoreState } from "@/redux/store";
@@ -71,6 +70,9 @@ export default function JobAddScreens(): JSX.Element {
 
     const newData: Array<IJob> = [...data, newJob];
     dispatch(setData(newData));
+
+    // since we are not saving the data, we have to store it locally
+    sessionStorage.setItem("temp-job", JSON.stringify(newData));
     push("/");
   };
 
